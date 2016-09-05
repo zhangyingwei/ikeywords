@@ -1,11 +1,11 @@
 package com.zhangyingwei.ikeywords;
 
-import java.util.List;
-import org.ansj.app.keyword.Keyword;
-
-import com.zhangyingwei.ikeywords.keyword.KeyWordComputer;
+import com.zhangyingwei.ikeywords.ansj.KeyWordComputer;
 import com.zhangyingwei.rssreader.client.RssClient;
 import com.zhangyingwei.rssreader.model.RssEntity;
+import org.ansj.app.keyword.Keyword;
+
+import java.util.List;
 
 public class App {
 	public static void main(String[] args) throws Exception {
