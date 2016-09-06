@@ -5,4 +5,6 @@ package com.zhangyingwei.ikeywords.common;
  */
 public class CommParams {
     public static String KEYWORD_ENDWORD_PATH = null;
+    public static int KEYWORD_TITLE_SIZE = 2;
+    public static int KEYWORD_CONTENT_SIZE = 3;
 }

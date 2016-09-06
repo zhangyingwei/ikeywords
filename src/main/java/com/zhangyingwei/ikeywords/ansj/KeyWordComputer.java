@@ -1,5 +1,6 @@
 package com.zhangyingwei.ikeywords.ansj;
 
+import com.zhangyingwei.ikeywords.ansj.valid.KeyWordValid;
 import org.ansj.app.keyword.Keyword;
 import org.ansj.domain.Term;
 import org.ansj.splitWord.analysis.NlpAnalysis;
@@ -12,10 +13,11 @@ import java.util.*;
  */
 public class KeyWordComputer {
     private static final Map<String, Double> POS_SCORE = new HashMap<String, Double>();
+    private KeyWordValid keyWordValid = new KeyWordValid();
     static {
         POS_SCORE.put("null", 0.0);
         POS_SCORE.put("w", 0.0);
-        POS_SCORE.put("en", 3.0);
+        POS_SCORE.put("en", 2.0);
         POS_SCORE.put("m", 0.0);
         POS_SCORE.put("num", 0.0);
         POS_SCORE.put("nr", 3.0);
@@ -54,12 +56,13 @@ public class KeyWordComputer {
         Map<String, Keyword> tm = new HashMap<String, Keyword>();
         List<Term> parse = NlpAnalysis.parse(content).getTerms();
         for (Term term : parse) {
+            if(!this.keyWordValid.valid(term.getName())){
+                continue;
+            }
             double weight = getWeight(term, content.length(), titleLength);
             if (weight == 0)
                 continue;
-
             Keyword keyword = tm.get(term.getName());
-
 
             if (keyword == null) {
                 keyword = new Keyword(term.getName(), term.natrue().allFrequency, weight);
